@@ -1,323 +1,101 @@
-import 'package:flutter/material.dart';
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Rangkuman Extension Methods</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #FFF0F5; /* Warna pink muda */
+            color: #4A0E17; /* Warna maroon gelap */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background-color: #FFFFFF;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border: 2px solid #FFC0CB;
+        }
+        h1 {
+            text-align: center;
+            color: #C71585; /* Medium Violet Red */
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        .identitas {
+            background-color: #FFE4E1; /* Misty Rose */
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border: 1px solid #FFB6C1;
+        }
+        .identitas p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+        .bold-text {
+            font-weight: bold;
+            color: #C71585;
+        }
+        .materi-box {
+            border-left: 5px solid #C71585;
+            padding-left: 15px;
+            margin-bottom: 25px;
+        }
+        .materi-box h2 {
+            font-size: 20px;
+            margin-top: 0;
+            color: #C71585;
+        }
+        .materi-box p {
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        pre {
+            background-color: #F8F8F8;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #E0E0E0;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
 
-void main() {
-  runApp(const MyApp());
-}
+<div class="container">
+    <h1>Rangkuman Materi<br>Extension Methods</h1>
+    <hr style="border: 1px solid #FFC0CB; margin-bottom: 20px;">
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+    <div class="identitas">
+        <p><span class="bold-text">Nama Lengkap:</span> Serlin Selviana Giay</p>
+        <p><span class="bold-text">NIM:</span> 251410030</p>
+        <p><span class="bold-text">Tugas:</span> Rangkuman Slide 9</p>
+    </div>
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Extension Methods',
-      home: ExtensionMethodsPage(),
-    );
-  }
-}
+    <div class="materi-box">
+        <h2>1. Pengantar Extension Methods</h2>
+        <p>Extension Methods adalah fitur Dart yang memungkinkan programmer menambahkan method baru ke class yang sudah ada tanpa harus mengubah kode asli class tersebut atau menggunakan pewarisan (inheritance).</p>
+    </div>
 
-class ExtensionMethodsPage extends StatelessWidget {
-  final List<Map<String, String>> materi = [
+    <div class="materi-box">
+        <h2>2. Masalah Tanpa Extension Methods</h2>
+        <p>Tanpa extension methods, programmer harus membuat fungsi biasa (utility functions) secara terpisah, sehingga pemanggilan kode menjadi kurang rapi, kurang intuitif, dan sulit dibaca.</p>
+        <p><span class="bold-text">Contoh sebelum ada Extension:</span></p>
+        <pre>String capitalize(String text) {
+  return text[0].toUpperCase() + text.substring(1);
+}</pre>
+    </div>
 
-    {
-      "judul": "1. Pengantar Extension Methods",
-      "isi":
-          "Extension Methods adalah fitur Dart yang memungkinkan programmer menambahkan method baru ke class yang sudah ada tanpa mengubah source code aslinya.",
-      "contoh":
-          "extension HelloExtension on String {\n  String sayHello() {\n    return 'Hello \$this';\n  }\n}",
-    },
+</div>
 
-    {
-      "judul": "2. Masalah Tanpa Extension Methods",
-      "isi":
-          "Tanpa extension methods, programmer harus membuat fungsi biasa sehingga kode menjadi kurang rapi dan sulit dibaca.",
-      "contoh":
-          "String capitalize(String text) {\n  return text[0].toUpperCase() + text.substring(1);\n}",
-    },
-
-    {
-      "judul": "3. Solusi dengan Extension Methods",
-      "isi":
-          "Dengan extension methods, method dapat dipanggil langsung dari object sehingga kode menjadi lebih bersih.",
-      "contoh":
-          "extension CapitalizeExtension on String {\n  String capitalize() {\n    return this[0].toUpperCase() + substring(1);\n  }\n}",
-    },
-
-    {
-      "judul": "4. Sintaks Extension Methods",
-      "isi":
-          "Sintaks dasar extension menggunakan keyword extension dan on.",
-      "contoh":
-          "extension NamaExtension on NamaClass {\n  // method\n}",
-    },
-
-    {
-      "judul": "5. Tipe yang Bisa Di-extend",
-      "isi":
-          "Extension dapat digunakan pada String, int, List, Map, double, dan custom class.",
-      "contoh":
-          "extension NumberExtension on int {\n  bool isEvenNumber() {\n    return this % 2 == 0;\n  }\n}",
-    },
-
-    {
-      "judul": "6. Extension untuk Null Safety",
-      "isi":
-          "Extension juga mendukung nullable type seperti String?.",
-      "contoh":
-          "extension NullableString on String? {\n  bool isNullOrEmpty() {\n    return this == null || this!.isEmpty;\n  }\n}",
-    },
-
-    {
-      "judul": "7. Generic Extensions",
-      "isi":
-          "Generic extension memungkinkan extension digunakan untuk semua tipe data.",
-      "contoh":
-          "extension ListExtension<T> on List<T> {\n  T? firstOrNull() {\n    return isEmpty ? null : first;\n  }\n}",
-    },
-
-    {
-      "judul": "8. Unnamed Extensions",
-      "isi":
-          "Extension dapat dibuat tanpa nama jika hanya digunakan pada satu file.",
-      "contoh":
-          "extension on String {\n  String greeting() {\n    return 'Hello \$this';\n  }\n}",
-    },
-
-    {
-      "judul": "9. Konflik Nama Extension",
-      "isi":
-          "Jika dua extension memiliki nama method yang sama maka gunakan nama extension secara langsung.",
-      "contoh":
-          "B('Hello').printData();",
-    },
-
-    {
-      "judul": "10. Extension untuk Custom Classes",
-      "isi":
-          "Extension juga dapat digunakan pada class buatan sendiri.",
-      "contoh":
-          "class User {\n  String name;\n\n  User(this.name);\n}\n\nextension UserExtension on User {\n  void sayHello() {\n    print('Hello, my name is \$name');\n  }\n}",
-    },
-  ];
-
-  ExtensionMethodsPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFFBEAF1),
-
-      appBar: AppBar(
-        backgroundColor: Colors.pink,
-        title: const Text(
-          "Rangkuman Slide 9",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
-
-        child: Column(
-          children: [
-
-            // HEADER
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(25),
-
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(
-                  color: Colors.pink.shade100,
-                  width: 3,
-                ),
-              ),
-
-              child: const Column(
-                children: [
-
-                  Text(
-                    "Extension Methods",
-                    textAlign: TextAlign.center,
-
-                    style: TextStyle(
-                      fontSize: 34,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.pink,
-                    ),
-                  ),
-
-                  SizedBox(height: 10),
-
-                  Text(
-                    "Rangkuman Materi Slide 9",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black54,
-                    ),
-                  ),
-
-                  SizedBox(height: 25),
-
-                  Divider(),
-
-                  SizedBox(height: 20),
-
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "Nama : Serlin Selviana Giay",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-
-                  SizedBox(height: 10),
-
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "NIM : 251410030",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            const SizedBox(height: 25),
-
-            ...materi.map((item) {
-
-              return Container(
-                margin: const EdgeInsets.only(bottom: 20),
-                padding: const EdgeInsets.all(20),
-
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                    color: Colors.pink.shade100,
-                    width: 2,
-                  ),
-                ),
-
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-
-                        Container(
-                          width: 6,
-                          height: 70,
-                          color: Colors.pink,
-                        ),
-
-                        const SizedBox(width: 12),
-
-                        Expanded(
-                          child: Text(
-                            item["judul"]!,
-                            style: const TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.pink,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-
-                    const SizedBox(height: 20),
-
-                    Text(
-                      item["isi"]!,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        height: 1.6,
-                      ),
-                    ),
-
-                    const SizedBox(height: 20),
-
-                    Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(15),
-
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFFFF4F8),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-
-                      child: SelectableText(
-                        item["contoh"]!,
-                        style: const TextStyle(
-                          fontFamily: 'monospace',
-                          fontSize: 15,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            }).toList(),
-
-            // GITHUB GIST DAN DARTPAD
-            Container(
-              padding: const EdgeInsets.all(20),
-
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(
-                  color: Colors.pink.shade100,
-                ),
-              ),
-
-              child: const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-
-                  Text(
-                    "Integrasi GitHub Gist & DartPad",
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.pink,
-                    ),
-                  ),
-
-                  SizedBox(height: 15),
-
-                  Text(
-                    "1. Upload kode ke GitHub Gist\n"
-                    "2. Copy ID Gist\n"
-                    "3. Gunakan URL berikut di DartPad:\n\n"
-                    "https://dartpad.dev/?id=ID_GIST",
-                    style: TextStyle(
-                      fontSize: 18,
-                      height: 1.6,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+</body>
+</html>
