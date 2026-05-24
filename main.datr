@@ -1,0 +1,323 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Extension Methods',
+      home: ExtensionMethodsPage(),
+    );
+  }
+}
+
+class ExtensionMethodsPage extends StatelessWidget {
+  final List<Map<String, String>> materi = [
+
+    {
+      "judul": "1. Pengantar Extension Methods",
+      "isi":
+          "Extension Methods adalah fitur Dart yang memungkinkan programmer menambahkan method baru ke class yang sudah ada tanpa mengubah source code aslinya.",
+      "contoh":
+          "extension HelloExtension on String {\n  String sayHello() {\n    return 'Hello \$this';\n  }\n}",
+    },
+
+    {
+      "judul": "2. Masalah Tanpa Extension Methods",
+      "isi":
+          "Tanpa extension methods, programmer harus membuat fungsi biasa sehingga kode menjadi kurang rapi dan sulit dibaca.",
+      "contoh":
+          "String capitalize(String text) {\n  return text[0].toUpperCase() + text.substring(1);\n}",
+    },
+
+    {
+      "judul": "3. Solusi dengan Extension Methods",
+      "isi":
+          "Dengan extension methods, method dapat dipanggil langsung dari object sehingga kode menjadi lebih bersih.",
+      "contoh":
+          "extension CapitalizeExtension on String {\n  String capitalize() {\n    return this[0].toUpperCase() + substring(1);\n  }\n}",
+    },
+
+    {
+      "judul": "4. Sintaks Extension Methods",
+      "isi":
+          "Sintaks dasar extension menggunakan keyword extension dan on.",
+      "contoh":
+          "extension NamaExtension on NamaClass {\n  // method\n}",
+    },
+
+    {
+      "judul": "5. Tipe yang Bisa Di-extend",
+      "isi":
+          "Extension dapat digunakan pada String, int, List, Map, double, dan custom class.",
+      "contoh":
+          "extension NumberExtension on int {\n  bool isEvenNumber() {\n    return this % 2 == 0;\n  }\n}",
+    },
+
+    {
+      "judul": "6. Extension untuk Null Safety",
+      "isi":
+          "Extension juga mendukung nullable type seperti String?.",
+      "contoh":
+          "extension NullableString on String? {\n  bool isNullOrEmpty() {\n    return this == null || this!.isEmpty;\n  }\n}",
+    },
+
+    {
+      "judul": "7. Generic Extensions",
+      "isi":
+          "Generic extension memungkinkan extension digunakan untuk semua tipe data.",
+      "contoh":
+          "extension ListExtension<T> on List<T> {\n  T? firstOrNull() {\n    return isEmpty ? null : first;\n  }\n}",
+    },
+
+    {
+      "judul": "8. Unnamed Extensions",
+      "isi":
+          "Extension dapat dibuat tanpa nama jika hanya digunakan pada satu file.",
+      "contoh":
+          "extension on String {\n  String greeting() {\n    return 'Hello \$this';\n  }\n}",
+    },
+
+    {
+      "judul": "9. Konflik Nama Extension",
+      "isi":
+          "Jika dua extension memiliki nama method yang sama maka gunakan nama extension secara langsung.",
+      "contoh":
+          "B('Hello').printData();",
+    },
+
+    {
+      "judul": "10. Extension untuk Custom Classes",
+      "isi":
+          "Extension juga dapat digunakan pada class buatan sendiri.",
+      "contoh":
+          "class User {\n  String name;\n\n  User(this.name);\n}\n\nextension UserExtension on User {\n  void sayHello() {\n    print('Hello, my name is \$name');\n  }\n}",
+    },
+  ];
+
+  ExtensionMethodsPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFFFBEAF1),
+
+      appBar: AppBar(
+        backgroundColor: Colors.pink,
+        title: const Text(
+          "Rangkuman Slide 9",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20),
+
+        child: Column(
+          children: [
+
+            // HEADER
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(25),
+
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                  color: Colors.pink.shade100,
+                  width: 3,
+                ),
+              ),
+
+              child: const Column(
+                children: [
+
+                  Text(
+                    "Extension Methods",
+                    textAlign: TextAlign.center,
+
+                    style: TextStyle(
+                      fontSize: 34,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.pink,
+                    ),
+                  ),
+
+                  SizedBox(height: 10),
+
+                  Text(
+                    "Rangkuman Materi Slide 9",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black54,
+                    ),
+                  ),
+
+                  SizedBox(height: 25),
+
+                  Divider(),
+
+                  SizedBox(height: 20),
+
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Nama : Serlin Selviana Giay",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(height: 10),
+
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "NIM : 251410030",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 25),
+
+            ...materi.map((item) {
+
+              return Container(
+                margin: const EdgeInsets.only(bottom: 20),
+                padding: const EdgeInsets.all(20),
+
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    color: Colors.pink.shade100,
+                    width: 2,
+                  ),
+                ),
+
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+
+                        Container(
+                          width: 6,
+                          height: 70,
+                          color: Colors.pink,
+                        ),
+
+                        const SizedBox(width: 12),
+
+                        Expanded(
+                          child: Text(
+                            item["judul"]!,
+                            style: const TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.pink,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    Text(
+                      item["isi"]!,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        height: 1.6,
+                      ),
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(15),
+
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFFFF4F8),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+
+                      child: SelectableText(
+                        item["contoh"]!,
+                        style: const TextStyle(
+                          fontFamily: 'monospace',
+                          fontSize: 15,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }).toList(),
+
+            // GITHUB GIST DAN DARTPAD
+            Container(
+              padding: const EdgeInsets.all(20),
+
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                  color: Colors.pink.shade100,
+                ),
+              ),
+
+              child: const Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+
+                  Text(
+                    "Integrasi GitHub Gist & DartPad",
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.pink,
+                    ),
+                  ),
+
+                  SizedBox(height: 15),
+
+                  Text(
+                    "1. Upload kode ke GitHub Gist\n"
+                    "2. Copy ID Gist\n"
+                    "3. Gunakan URL berikut di DartPad:\n\n"
+                    "https://dartpad.dev/?id=ID_GIST",
+                    style: TextStyle(
+                      fontSize: 18,
+                      height: 1.6,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
