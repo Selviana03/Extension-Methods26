@@ -15,7 +15,7 @@
             justify-content: center;
         }
         .container {
-            max-width: 750px;
+            max-width: 800px;
             width: 100%;
             background-color: #FFFFFF;
             padding: 30px;
@@ -59,6 +59,15 @@
             line-height: 1.6;
             margin-bottom: 8px;
         }
+        .materi-box ul {
+            margin: 5px 0 10px 20px;
+            padding: 0;
+        }
+        .materi-box li {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 5px;
+        }
         pre {
             background-color: #F9F9F9;
             padding: 12px;
@@ -75,74 +84,38 @@
 <body>
 
 <div class="container">
-    <h1>Rangkuman Materi<br>Extension Methods</h1>
+    <h1>Rangkuman Materi Lengkap<br>Extension Methods (Slide 9)</h1>
     <hr style="border: 1px solid #FFC0CB; margin-bottom: 20px;">
 
     <div class="identitas">
         <p><span class="bold-text">Nama Lengkap:</span> Serlin Selviana Giay</p>
         <p><span class="bold-text">NIM:</span> 251410030</p>
-        <p><span class="bold-text">Tugas:</span> Rangkuman Slide 9</p>
+        <p><span class="bold-text">Tugas:</span> Rangkuman Lengkap Slide 9</p>
     </div>
 
     <div class="materi-box">
         <h2>1. Pengantar Extension Methods</h2>
-        <p>Extension Methods adalah fitur Dart yang memungkinkan programmer menambahkan method baru ke class yang sudah ada tanpa harus mengubah kode asli class tersebut atau menggunakan pewarisan (inheritance).</p>
+        <p>Extension Methods adalah fitur Dart yang memungkinkan kita untuk menambahkan fungsionalitas atau method baru ke dalam pustaka/class yang sudah ada tanpa harus mengubah kode asli class tersebut.</p>
     </div>
 
     <div class="materi-box">
         <h2>2. Masalah Tanpa Extension Methods</h2>
-        <p>Tanpa extension methods, programmer harus membuat fungsi biasa (utility functions) secara terpisah, sehingga pemanggilan kode menjadi kurang rapi, kurang intuitif, dan sulit dibaca.</p>
-        <p><span class="bold-text">Contoh tanpa Extension:</span></p>
-        <pre>String capitalize(String text) {
-  return text[0].toUpperCase() + text.substring(1);
-}</pre>
+        <p>Tanpa fitur ini, kita terpaksa membuat fungsi utilitas statis di luar class, membuat pemanggilan kode menjadi kurang natural dan sulit dibaca.</p>
+        <pre>bool isValidEmail(String text) { return text.contains('@'); }</pre>
     </div>
 
     <div class="materi-box">
-        <h2>3. Solusi dengan Extension Methods</h2>
-        <p>Dengan extension methods, method dapat dipanggil langsung dari object sehingga kode menjadi lebih rapi dan intuitif layaknya fitur bawaan class.</p>
-        <p><span class="bold-text">Contoh Implementasi:</span></p>
-        <pre>extension CapitalizeExtension on String {
-  String capitalize() {
-    return this[0].toUpperCase() + substring(1);
-  }
-}</pre>
+        <h2>3 s/id 10. Fitur & Implementasi Lengkap</h2>
+        <p>Extension Methods mendukung fitur Null Safety, tipe Generic, serta sangat berguna untuk menyematkan fungsi khusus pada Custom Class buatan kita sendiri.</p>
     </div>
 
-    <div class="materi-box">
-        <h2>4 & 5. Sintaks & Tipe yang Bisa Di-extend</h2>
-        <p>Extension menggunakan keyword <span class="bold-text">extension ... on ...</span>. Fitur ini bisa digunakan untuk tipe data bawaan Dart seperti String, int, List, Map, double, hingga custom class.</p>
-        <p><span class="bold-text">Contoh pada Integer:</span></p>
-        <pre>extension NumberExtension on int {
-  bool get isEvenNumber => this % 2 == 0;
-}</pre>
-    </div>
-
-    <div class="materi-box">
-        <h2>6 & 7. Null Safety & Generic Extensions</h2>
-        <p>Extension juga mendukung tipe nullable (seperti String?) dan generic extension yang memungkinkan extension digunakan fleksibel untuk semua tipe data.</p>
-        <p><span class="bold-text">Contoh Nullable Extension:</span></p>
-        <pre>extension NullableString on String? {
-  bool get isNullOrEmpty => this == null || this!.isEmpty;
-}</pre>
-    </div>
-
-    <div class="materi-box">
-        <h2>8 & 9. Unnamed Extensions & Konflik Nama</h2>
-        <p>Extension dapat dibuat tanpa nama (unnamed) jika hanya digunakan pada satu file secara langsung. Jika terjadi konflik nama method yang sama dari dua buah extension, kita bisa mengatasinya dengan memanggil nama extensionnya secara eksplisit.</p>
-        <p><span class="bold-text">Contoh Konflik Solusi:</span></p>
-        <pre>MyExtension(text).printData();</pre>
-    </div>
-
-    <div class="materi-box">
-        <h2>10. Extension untuk Custom Classes</h2>
-        <p>Extension juga dapat disematkan pada class buatan kita sendiri untuk memisahkan logika tambahan agar kode utama tetap bersih.</p>
-        <p><span class="bold-text">Contoh pada Custom Class User:</span></p>
-        <pre>extension UserExtension on User {
-  void sayHello() {
-    print('Hello, my name is $name');
-  }
-}</pre>
+    <div class="materi-box" style="margin-top: 40px; border-left: 5px solid #C71585;">
+        <h2>Interactive Code Playground (DartPad)</h2>
+        <p>Silakan klik tombol <span class="bold-text">Run</span> di bawah ini untuk mengeksekusi kode program secara langsung di website:</p>
+        <iframe 
+            src="https://dartpad.dev/embed-inline.html?id=6318049e25594ba6b5d3307d67e7dbb7&theme=light" 
+            style="width: 100%; height: 500px; border: 2px solid #FFC0CB; border-radius: 12px; margin-top: 15px;">
+        </iframe>
     </div>
 
 </div>
