@@ -7,30 +7,30 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #FFF0F5; /* Warna pink muda */
-            color: #4A0E17; /* Warna maroon gelap */
+            background-color: #FFF0F5;
+            color: #4A0E17;
             margin: 0;
             padding: 20px;
             display: flex;
             justify-content: center;
         }
         .container {
-            max-width: 600px;
+            max-width: 750px;
             width: 100%;
             background-color: #FFFFFF;
-            padding: 25px;
+            padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             border: 2px solid #FFC0CB;
         }
         h1 {
             text-align: center;
-            color: #C71585; /* Medium Violet Red */
+            color: #C71585;
             font-size: 28px;
             margin-bottom: 5px;
         }
         .identitas {
-            background-color: #FFE4E1; /* Misty Rose */
+            background-color: #FFE4E1;
             padding: 15px;
             border-radius: 15px;
             margin-bottom: 25px;
@@ -47,25 +47,28 @@
         .materi-box {
             border-left: 5px solid #C71585;
             padding-left: 15px;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
         .materi-box h2 {
-            font-size: 20px;
+            font-size: 18px;
             margin-top: 0;
             color: #C71585;
         }
         .materi-box p {
             font-size: 15px;
             line-height: 1.6;
+            margin-bottom: 8px;
         }
         pre {
-            background-color: #F8F8F8;
-            padding: 10px;
+            background-color: #F9F9F9;
+            padding: 12px;
             border-radius: 8px;
-            border: 1px solid #E0E0E0;
+            border: 1px solid #E6E6E6;
             overflow-x: auto;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: 'Consolas', 'Courier New', monospace;
             font-size: 14px;
+            color: #232323;
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -89,9 +92,56 @@
     <div class="materi-box">
         <h2>2. Masalah Tanpa Extension Methods</h2>
         <p>Tanpa extension methods, programmer harus membuat fungsi biasa (utility functions) secara terpisah, sehingga pemanggilan kode menjadi kurang rapi, kurang intuitif, dan sulit dibaca.</p>
-        <p><span class="bold-text">Contoh sebelum ada Extension:</span></p>
+        <p><span class="bold-text">Contoh tanpa Extension:</span></p>
         <pre>String capitalize(String text) {
   return text[0].toUpperCase() + text.substring(1);
+}</pre>
+    </div>
+
+    <div class="materi-box">
+        <h2>3. Solusi dengan Extension Methods</h2>
+        <p>Dengan extension methods, method dapat dipanggil langsung dari object sehingga kode menjadi lebih rapi dan intuitif layaknya fitur bawaan class.</p>
+        <p><span class="bold-text">Contoh Implementasi:</span></p>
+        <pre>extension CapitalizeExtension on String {
+  String capitalize() {
+    return this[0].toUpperCase() + substring(1);
+  }
+}</pre>
+    </div>
+
+    <div class="materi-box">
+        <h2>4 & 5. Sintaks & Tipe yang Bisa Di-extend</h2>
+        <p>Extension menggunakan keyword <span class="bold-text">extension ... on ...</span>. Fitur ini bisa digunakan untuk tipe data bawaan Dart seperti String, int, List, Map, double, hingga custom class.</p>
+        <p><span class="bold-text">Contoh pada Integer:</span></p>
+        <pre>extension NumberExtension on int {
+  bool get isEvenNumber => this % 2 == 0;
+}</pre>
+    </div>
+
+    <div class="materi-box">
+        <h2>6 & 7. Null Safety & Generic Extensions</h2>
+        <p>Extension juga mendukung tipe nullable (seperti String?) dan generic extension yang memungkinkan extension digunakan fleksibel untuk semua tipe data.</p>
+        <p><span class="bold-text">Contoh Nullable Extension:</span></p>
+        <pre>extension NullableString on String? {
+  bool get isNullOrEmpty => this == null || this!.isEmpty;
+}</pre>
+    </div>
+
+    <div class="materi-box">
+        <h2>8 & 9. Unnamed Extensions & Konflik Nama</h2>
+        <p>Extension dapat dibuat tanpa nama (unnamed) jika hanya digunakan pada satu file secara langsung. Jika terjadi konflik nama method yang sama dari dua buah extension, kita bisa mengatasinya dengan memanggil nama extensionnya secara eksplisit.</p>
+        <p><span class="bold-text">Contoh Konflik Solusi:</span></p>
+        <pre>MyExtension(text).printData();</pre>
+    </div>
+
+    <div class="materi-box">
+        <h2>10. Extension untuk Custom Classes</h2>
+        <p>Extension juga dapat disematkan pada class buatan kita sendiri untuk memisahkan logika tambahan agar kode utama tetap bersih.</p>
+        <p><span class="bold-text">Contoh pada Custom Class User:</span></p>
+        <pre>extension UserExtension on User {
+  void sayHello() {
+    print('Hello, my name is $name');
+  }
 }</pre>
     </div>
 
